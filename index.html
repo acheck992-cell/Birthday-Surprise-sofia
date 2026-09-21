@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080914">
+
+<title>Для Софії ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#070812;
+    color:#fff;
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-5;
+
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,145,185,.10),transparent 30%),
+        radial-gradient(circle at 80% 40%,rgba(151,133,255,.09),transparent 32%),
+        radial-gradient(circle at 50% 90%,rgba(255,196,130,.06),transparent 30%);
+}
+
+/* =========================================================
+   STARS
+========================================================= */
+
+#stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-3;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:#fff;
+    opacity:.35;
+    animation:twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.15;
+        transform:scale(.7);
+    }
+
+    50%{
+        opacity:.9;
+        transform:scale(1.6);
+    }
+}
+
+/* =========================================================
+   FLOWERS
+========================================================= */
+
+#flowerLayer{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:90;
+    overflow:hidden;
+}
+
+.falling-flower{
+    position:absolute;
+    top:-80px;
+    user-select:none;
+    filter:drop-shadow(0 4px 7px rgba(0,0,0,.2));
+    animation:fallFlower linear forwards;
+}
+
+@keyframes fallFlower{
+
+    0%{
+        transform:
+            translate3d(0,-80px,0)
+            rotate(0deg);
+        opacity:0;
+    }
+
+    8%{
+        opacity:.95;
+    }
+
+    50%{
+        transform:
+            translate3d(var(--drift),55vh,0)
+            rotate(180deg);
+    }
+
+    100%{
+        transform:
+            translate3d(calc(var(--drift) * -1),115vh,0)
+            rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+#intro{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    padding:25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #1a1b38 0%,
+            #090a17 55%,
+            #05060d 100%
+        );
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+#intro.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.intro-inner{
+    width:min(700px,100%);
+}
+
+.intro-small{
+    color:#f5c7d7;
+    font-size:10px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:25px;
+}
+
+.intro-inner h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(60px,13vw,125px);
+    line-height:.82;
+    font-weight:500;
+}
+
+.intro-inner h1 span{
+    display:block;
+    margin-top:20px;
+    color:#ffb3cc;
+    font-family:"Great Vibes",cursive;
+    font-size:.72em;
+}
+
+.intro-description{
+    max-width:520px;
+    margin:30px auto 0;
+    color:#bbb6c6;
+    line-height:1.8;
+}
+
+.start-button{
+    margin-top:35px;
+    padding:15px 30px;
+
+    border:1px solid rgba(255,190,211,.45);
+    border-radius:100px;
+
+    color:white;
+    background:rgba(255,180,207,.08);
+
+    cursor:pointer;
+    transition:.35s;
+}
+
+.start-button:hover{
+    transform:translateY(-3px);
+    background:rgba(255,180,207,.16);
+    box-shadow:0 15px 45px rgba(255,120,170,.15);
+}
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+#musicButton{
+    position:fixed;
+    right:18px;
+    top:18px;
+    z-index:200;
+
+    width:48px;
+    height:48px;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.15);
+
+    color:white;
+    background:rgba(10,11,25,.65);
+    backdrop-filter:blur(15px);
+
+    cursor:pointer;
+}
+
+#musicButton.show{
+    display:flex;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+section{
+    min-height:100vh;
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:100px 20px;
+}
+
+.hero{
+    text-align:center;
+}
+
+.hero-inner{
+    max-width:800px;
+    animation:heroAppear 1.5s ease;
+}
+
+@keyframes heroAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.eyebrow{
+    color:#f0bdcf;
+    text-transform:uppercase;
+    letter-spacing:5px;
+    font-size:10px;
+    margin-bottom:20px;
+}
+
+.hero h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(58px,12vw,125px);
+    line-height:.78;
+    font-weight:500;
+}
+
+.hero h2 span{
+    display:block;
+    color:#ffb4ce;
+    font-family:"Great Vibes",cursive;
+    font-size:.75em;
+    margin-top:28px;
+}
+
+.hero-text{
+    max-width:610px;
+    margin:35px auto 0;
+    color:#bbb7c5;
+    line-height:1.9;
+}
+
+.belated{
+    display:inline-block;
+    margin-top:40px;
+    padding:20px 30px;
+
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.12);
+
+    background:rgba(255,255,255,.055);
+    backdrop-filter:blur(15px);
+}
+
+.belated strong{
+    display:block;
+    color:#ffb4ce;
+    font-family:"Cormorant Garamond",serif;
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+.scroll{
+    position:absolute;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+
+    color:#7e7b89;
+    font-size:9px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+/* =========================================================
+   CINEMATIC PHOTO SECTION
+========================================================= */
+
+.cinematic{
+    min-height:100vh;
+    padding:60px 0;
+    overflow:hidden;
+    background:#05060d;
+}
+
+.cinematic-heading{
+    position:absolute;
+    top:45px;
+    left:0;
+    right:0;
+    z-index:20;
+    text-align:center;
+    pointer-events:none;
+}
+
+.cinematic-heading .eyebrow{
+    margin-bottom:8px;
+}
+
+.cinematic-heading p{
+    color:#aaa5b4;
+    font-size:13px;
+}
+
+.movie{
+    position:relative;
+    width:100%;
+    height:100vh;
+    min-height:650px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+}
+
+.movie-slide{
+    position:absolute;
+    inset:0;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+.movie-slide.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.movie-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    transform:scale(1.10);
+    transition:transform 7s ease;
+}
+
+.movie-slide.active img{
+    transform:scale(1);
+}
+
+/* cinematic darkness */
+
+.movie-slide::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.55),
+            transparent 25%,
+            transparent 65%,
+            rgba(0,0,0,.72)
+        );
+}
+
+.photo-caption{
+    position:absolute;
+    z-index:10;
+
+    left:50%;
+    bottom:90px;
+
+    width:min(750px,90%);
+
+    transform:translateX(-50%) translateY(20px);
+
+    text-align:center;
+
+    opacity:0;
+
+    transition:
+        opacity 1s ease .3s,
+        transform 1s ease .3s;
+}
+
+.movie-slide.active .photo-caption{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+.photo-caption span{
+    display:block;
+
+    color:#f8c9d9;
+    font-size:10px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    margin-bottom:13px;
+}
+
+.photo-caption h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(35px,6vw,65px);
+    font-weight:500;
+    line-height:1;
+}
+
+.photo-caption p{
+    margin-top:12px;
+    color:#ddd8df;
+    line-height:1.6;
+}
+
+/* Progress */
+
+.movie-progress{
+    position:absolute;
+    left:50%;
+    bottom:30px;
+    transform:translateX(-50%);
+
+    z-index:30;
+
+    width:min(500px,80%);
+}
+
+.progress-line{
+    width:100%;
+    height:2px;
+    background:rgba(255,255,255,.18);
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:0;
+    height:100%;
+    background:#ffd0de;
+    transition:width linear;
+}
+
+.photo-counter{
+    margin-top:9px;
+    color:#aaa5b2;
+    font-size:9px;
+    letter-spacing:3px;
+    text-align:center;
+}
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message-section{
+    text-align:center;
+}
+
+.message-card{
+    width:min(750px,100%);
+    margin-top:45px;
+
+    padding:55px 35px;
+
+    border-radius:30px;
+
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(15px);
+}
+
+.message-card h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(40px,7vw,70px);
+    font-weight:500;
+}
+
+.message-card p{
+    margin-top:25px;
+    color:#bbb7c5;
+    line-height:1.9;
+}
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.letter-section{
+    text-align:center;
+}
+
+.envelope{
+    position:relative;
+
+    width:min(650px,100%);
+    height:360px;
+
+    margin:50px auto 0;
+
+    cursor:pointer;
+    perspective:1000px;
+}
+
+.envelope-front{
+    position:absolute;
+    inset:0;
+
+    z-index:5;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(145deg,#ead8c9,#cfb8a7);
+
+    color:#493a35;
+
+    box-shadow:0 30px 80px rgba(0,0,0,.4);
+
+    transition:
+        transform 1s ease,
+        opacity .7s ease;
+}
+
+.envelope.open .envelope-front{
+    transform:translateY(-100%);
+    opacity:0;
+}
+
+.seal{
+    width:75px;
+    height:75px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#b96e83;
+    color:white;
+
+    font-family:"Great Vibes",cursive;
+    font-size:35px;
+
+    box-shadow:0 8px 25px rgba(70,30,40,.25);
+}
+
+.envelope-front p{
+    margin-top:20px;
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.letter{
+    position:absolute;
+    inset:12px;
+
+    padding:35px;
+
+    background:#fffaf2;
+    color:#403734;
+
+    border-radius:15px;
+
+    overflow:auto;
+
+    opacity:0;
+    transform:scale(.9);
+
+    transition:
+        opacity .8s ease .35s,
+        transform .8s ease .35s;
+}
+
+.envelope.open .letter{
+    opacity:1;
+    transform:scale(1);
+}
+
+.letter h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+.letter p{
+    font-family:"Cormorant Garamond",serif;
+    font-size:21px;
+    line-height:1.55;
+    text-align:left;
+}
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final{
+    text-align:center;
+    overflow:hidden;
+}
+
+.final h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(55px,12vw,125px);
+    line-height:.85;
+    font-weight:500;
+}
+
+.final h2 span{
+    display:block;
+
+    color:#ffb4ce;
+
+    font-family:"Great Vibes",cursive;
+    font-size:.75em;
+
+    margin-top:25px;
+}
+
+.final p{
+    width:min(650px,100%);
+    margin:35px auto 0;
+
+    color:#bbb7c5;
+    line-height:1.9;
+}
+
+.signature{
+    margin-top:45px;
+
+    color:#f3d09b;
+
+    font-family:"Great Vibes",cursive;
+    font-size:38px;
+}
+
+/* =========================================================
+   FIREWORKS
+========================================================= */
+
+.firework{
+    position:absolute;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    box-shadow:
+        0 -90px 0 #fff,
+        64px -64px 0 #fff,
+        90px 0 0 #fff,
+        64px 64px 0 #fff,
+        0 90px 0 #fff,
+        -64px 64px 0 #fff,
+        -90px 0 0 #fff,
+        -64px -64px 0 #fff;
+
+    opacity:0;
+
+    animation:firework 4s infinite;
+}
+
+.firework.one{
+    top:25%;
+    left:15%;
+}
+
+.firework.two{
+    top:28%;
+    right:15%;
+    animation-delay:1.3s;
+}
+
+.firework.three{
+    bottom:20%;
+    left:25%;
+    animation-delay:2.3s;
+}
+
+@keyframes firework{
+
+    0%,65%,100%{
+        opacity:0;
+        transform:scale(.2);
+    }
+
+    15%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    35%{
+        opacity:.1;
+        transform:scale(1.2);
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    section{
+        padding:80px 18px;
+    }
+
+    .movie{
+        min-height:600px;
+        height:90vh;
+    }
+
+    .movie-slide img{
+        object-position:center;
+    }
+
+    .cinematic-heading{
+        top:25px;
+    }
+
+    .photo-caption{
+        bottom:90px;
+    }
+
+    .photo-caption p{
+        font-size:13px;
+    }
+
+    .message-card{
+        padding:40px 25px;
+    }
+
+    .envelope{
+        height:390px;
+    }
+
+    .letter{
+        padding:25px;
+    }
+
+    .letter p{
+        font-size:18px;
+    }
+
+}
+
+@media(max-width:430px){
+
+    .hero h2{
+        font-size:65px;
+    }
+
+    .intro-inner h1{
+        font-size:65px;
+    }
+
+    .movie{
+        height:85vh;
+        min-height:560px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     STARS
+===================================================== -->
+
+<div id="stars"></div>
+
+<!-- =====================================================
+     FLOWERS
+===================================================== -->
+
+<div id="flowerLayer"></div>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<div id="intro">
+
+    <div class="intro-inner">
+
+        <div class="intro-small">
+            маленький сюрприз
+        </div>
+
+        <h1>
+            Це для
+            <span>Софії</span>
+        </h1>
+
+        <p class="intro-description">
+            Твій день народження вже минув,
+            але я все одно хотів зробити для тебе
+            щось трохи особливіше, ніж просто повідомлення.
+        </p>
+
+        <button class="start-button" id="startButton">
+            Відкрити сюрприз ✦
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<button id="musicButton">♫</button>
+
+<audio id="music" loop>
+    <source
+        src="I thought I saw your face today (sped up).mp3"
+        type="audio/mpeg">
+</audio>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <div class="eyebrow">
+            трохи запізніле, але щире
+        </div>
+
+        <h2>
+            З Днем
+            <span>Народження, Софіє ♡</span>
+        </h2>
+
+        <p class="hero-text">
+            Я знаю, що трохи запізнився.
+            Але замість того, щоб просто написати
+            «з Днем народження», я вирішив зробити
+            маленький сюрприз.
+        </p>
+
+        <div class="belated">
+
+            <strong>Із запізнілим Днем народження! ✨</strong>
+
+            Деякі побажання просто потребують
+            трохи більше часу.
+
+        </div>
+
+    </div>
+
+    <div class="scroll">
+        прокрути вниз
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CINEMATIC PHOTOS
+===================================================== -->
+
+<section class="cinematic">
+
+    <div class="cinematic-heading">
+
+        <div class="eyebrow">
+            маленька історія
+        </div>
+
+        <p>
+            кілька кадрів для тебе
+        </p>
+
+    </div>
+
+
+    <div class="movie" id="movie">
+
+        <!-- PHOTO 1 -->
+
+        <div class="movie-slide active">
+
+            <img
+                src="Screenshot_2026-09-21-19-55-00-864_com.android.chrome-edit.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>01 · маленький момент</span>
+
+                <h3>
+                    Нехай сьогодні<br>
+                    буде трохи тепліше.
+                </h3>
+
+                <p>
+                    Навіть якщо цей день уже минув.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 2 -->
+
+        <div class="movie-slide">
+
+            <img
+                src="Screenshot_2026-09-21-19-54-45-235_com.android.chrome-edit.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>02 · побажання</span>
+
+                <h3>
+                    Більше моментів,<br>
+                    які хочеться запам'ятати.
+                </h3>
+
+                <p>
+                    І менше тих, які хочеться забути.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 3 -->
+
+        <div class="movie-slide">
+
+            <img
+                src="Screenshot_2026-09-21-19-54-09-351_com.android.chrome-edit.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>03 · усмішка</span>
+
+                <h3>
+                    Нехай причин<br>
+                    усміхатися буде багато.
+                </h3>
+
+                <p>
+                    Навіть зовсім маленьких.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 4 -->
+
+        <div class="movie-slide">
+
+            <img
+                src="Screenshot_2026-09-21-19-53-37-548_com.android.chrome-edit.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>04 · мрії</span>
+
+                <h3>
+                    Нехай твої мрії<br>
+                    знаходять дорогу до тебе.
+                </h3>
+
+                <p>
+                    Навіть ті, про які ти поки нікому не розповідаєш.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 5 -->
+
+        <div class="movie-slide">
+
+            <img
+                src="Screenshot_2026-09-21-19-53-21-002_com.android.chrome-edit.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>05 · люди</span>
+
+                <h3>
+                    Нехай поруч<br>
+                    будуть правильні люди.
+                </h3>
+
+                <p>
+                    З якими легко сміятися і бути собою.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 6 -->
+
+        <div class="movie-slide">
+
+            <img
+                src="Screenshot_2026-09-21-19-53-05-092_com.android.chrome-edit.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>06 · життя</span>
+
+                <h3>
+                    Більше красивих<br>
+                    випадковостей.
+                </h3>
+
+                <p>
+                    Саме вони іноді стають найкращими спогадами.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 7 -->
+
+        <div class="movie-slide">
+
+            <img
+                src="Screenshot_2026-09-21-19-52-35-828_com.android.chrome-edit.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>07 · спокій</span>
+
+                <h3>
+                    Більше тихих вечорів<br>
+                    і хороших думок.
+                </h3>
+
+                <p>
+                    Коли все навколо нарешті стає трохи спокійнішим.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 8 -->
+
+        <div class="movie-slide">
+
+            <img
+                src="Screenshot_2026-09-21-19-52-20-049_com.android.chrome-edit.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>08 · моменти</span>
+
+                <h3>
+                    Нехай звичайні дні<br>
+                    теж будуть особливими.
+                </h3>
+
+                <p>
+                    Без особливої причини.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 9 -->
+
+        <div class="movie-slide">
+
+            <img
+                src="Screenshot_2026-09-21-19-51-59-278_com.android.chrome-edit.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>09 · нові дороги</span>
+
+                <h3>
+                    Нехай попереду<br>
+                    буде багато нового.
+                </h3>
+
+                <p>
+                    Місць, людей, історій і маленьких пригод.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 10 -->
+
+        <div class="movie-slide">
+
+            <img
+                src="SaveClip.App_784979925_18088231220649634_2213022767238894172_n.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>10 · тепло</span>
+
+                <h3>
+                    І нехай тобі<br>
+                    завжди буде тепло.
+                </h3>
+
+                <p>
+                    Не тільки від сонця.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 11 -->
+
+        <div class="movie-slide">
+
+            <img
+                src="SaveClip.App_784426936_18088234688649634_8084967660050440283_n.jpg"
+                alt="Фото">
+
+            <div class="photo-caption">
+
+                <span>11 · останній кадр</span>
+
+                <h3>
+                    А найкраще<br>
+                    ще попереду.
+                </h3>
+
+                <p>
+                    Нехай цей рік подарує тобі багато хорошого.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="movie-progress">
+
+            <div class="progress-line">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="photo-counter" id="photoCounter">
+                01 / 11
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MESSAGE
+===================================================== -->
+
+<section class="message-section">
+
+    <div>
+
+        <div class="eyebrow">
+            одна маленька думка
+        </div>
+
+        <div class="message-card">
+
+            <h2>
+                Деякі знайомства<br>
+                трапляються випадково.
+            </h2>
+
+            <p>
+                А потім ти раптом розумієш,
+                що радий тому випадку.
+
+                <br><br>
+
+                Я просто хочу побажати тобі,
+                щоб у житті було якомога більше
+                таких випадковостей, які приводять
+                до чогось хорошого.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ENVELOPE
+===================================================== -->
+
+<section class="letter-section">
+
+    <div style="width:min(750px,100%);">
+
+        <div class="eyebrow">
+            тут ще дещо
+        </div>
+
+        <h2 style="
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(45px,8vw,80px);
+            font-weight:500;
+        ">
+            Один маленький лист.
+        </h2>
+
+        <p style="
+            margin-top:20px;
+            color:#aaa6b3;
+        ">
+            Натисни на конверт.
+        </p>
+
+
+        <div class="envelope" id="envelope">
+
+            <div class="envelope-front">
+
+                <div class="seal">
+                    S
+                </div>
+
+                <p>
+                    відкрити
+                </p>
+
+            </div>
+
+
+            <div class="letter">
+
+                <h3>
+                    Для тебе, Софіє.
+                </h3>
+
+                <p>
+                    Я знаю, що це привітання трохи запізнилося.
+                    Але я хотів зробити не просто ще одне повідомлення
+                    у чаті.
+                </p>
+
+                <br>
+
+                <p>
+                    Тому нехай це буде маленьким нагадуванням:
+                    хороші побажання не стають менш хорошими
+                    через кілька зайвих днів.
+                </p>
+
+                <br>
+
+                <p>
+                    Бажаю тобі багато спокійних днів,
+                    щирого сміху, красивих місць,
+                    приємних людей поруч і моментів,
+                    які хочеться зберегти в пам'яті.
+                </p>
+
+                <br>
+
+                <p>
+                    Нехай у тебе вистачає сміливості
+                    пробувати те, чого хочеться,
+                    і сил залишатися собою.
+                </p>
+
+                <br>
+
+                <p>
+                    І я справді радий, що наші шляхи
+                    одного дня перетнулися.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final">
+
+    <div class="firework one"></div>
+    <div class="firework two"></div>
+    <div class="firework three"></div>
+
+    <div style="position:relative;z-index:10;">
+
+        <div class="eyebrow">
+            і наостанок
+        </div>
+
+        <h2>
+            З Днем Народження,
+            <span>Софіє ♡</span>
+        </h2>
+
+        <p>
+
+            Так, я трохи запізнився.
+
+            <br><br>
+
+            Але сподіваюся, що цей маленький сюрприз
+            хоча б на кілька хвилин подарує тобі усмішку.
+
+            <br><br>
+
+            Нехай попереду буде багато красивих
+            моментів, добрих людей, нових місць,
+            смішних історій і здійснених мрій.
+
+            <br><br>
+
+            І нехай хорошого в твоєму житті
+            завжди буде більше.
+
+        </p>
+
+        <div class="signature">
+            З найкращими побажаннями ✦
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   STAR BACKGROUND
+========================================================= */
+
+const stars = document.getElementById("stars");
+
+for(let i=0;i<120;i++){
+
+    const star=document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+
+    const size=Math.random()*2+1;
+
+    star.style.width=size+"px";
+    star.style.height=size+"px";
+
+    star.style.animationDelay=(Math.random()*4)+"s";
+
+    stars.appendChild(star);
+}
+
+
+/* =========================================================
+   FLOWER RAIN
+========================================================= */
+
+const flowerLayer=document.getElementById("flowerLayer");
+
+const flowers=[
+    "🌺",
+    "🌻",
+    "🌹",
+    "🌷",
+    "🌼",
+    "💐",
+    "🌸",
+    "🌺",
+    "🌷"
+];
+
+function createFlower(){
+
+    const flower=document.createElement("div");
+
+    flower.className="falling-flower";
+
+    flower.textContent=
+        flowers[Math.floor(Math.random()*flowers.length)];
+
+    flower.style.left=
+        Math.random()*100+"vw";
+
+    flower.style.fontSize=
+        (15+Math.random()*22)+"px";
+
+    flower.style.setProperty(
+        "--drift",
+        (-100+Math.random()*200)+"px"
+    );
+
+    const duration=
+        5+Math.random()*6;
+
+    flower.style.animationDuration=
+        duration+"s";
+
+    flower.style.animationDelay=
+        Math.random()*1.5+"s";
+
+    flowerLayer.appendChild(flower);
+
+    setTimeout(()=>{
+        flower.remove();
+    },(duration+2)*1000);
+}
+
+
+/* Start gentle flower rain */
+
+let flowerInterval;
+
+function startFlowers(){
+
+    if(flowerInterval) return;
+
+    flowerInterval=setInterval(()=>{
+
+        createFlower();
+
+        if(Math.random()>.55){
+            setTimeout(createFlower,250);
+        }
+
+    },500);
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+const intro=document.getElementById("intro");
+const startButton=document.getElementById("startButton");
+
+const music=document.getElementById("music");
+const musicButton=document.getElementById("musicButton");
+
+startButton.addEventListener("click",()=>{
+
+    intro.classList.add("hide");
+
+    musicButton.classList.add("show");
+
+    music.volume=.32;
+
+    music.play().catch(()=>{});
+
+    startFlowers();
+
+});
+
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+musicButton.addEventListener("click",()=>{
+
+    if(music.paused){
+
+        music.play();
+
+        musicButton.textContent="♫";
+
+    }else{
+
+        music.pause();
+
+        musicButton.textContent="▶";
+
+    }
+
+});
+
+
+/* =========================================================
+   CINEMATIC SLIDESHOW
+========================================================= */
+
+const slides=
+    document.querySelectorAll(".movie-slide");
+
+const progressFill=
+    document.getElementById("progressFill");
+
+const photoCounter=
+    document.getElementById("photoCounter");
+
+
+let currentSlide=0;
+
+/*
+   Time per photo.
+   3500 = 3.5 seconds.
+*/
+
+const slideDuration=3500;
+
+
+function showSlide(index){
+
+    slides.forEach(slide=>{
+        slide.classList.remove("active");
+    });
+
+    slides[index].classList.add("active");
+
+    photoCounter.textContent=
+        String(index+1).padStart(2,"0")
+        +" / "
+        +String(slides.length).padStart(2,"0");
+
+
+    progressFill.style.transition="none";
+    progressFill.style.width="0%";
+
+    requestAnimationFrame(()=>{
+
+        requestAnimationFrame(()=>{
+
+            progressFill.style.transition=
+                `width ${slideDuration}ms linear`;
+
+            progressFill.style.width="100%";
+
+        });
+
+    });
+
+}
+
+
+/* Start after intro */
+
+let slideshowStarted=false;
+
+function startSlideshow(){
+
+    if(slideshowStarted) return;
+
+    slideshowStarted=true;
+
+    showSlide(0);
+
+    setInterval(()=>{
+
+        currentSlide++;
+
+        if(currentSlide>=slides.length){
+
+            currentSlide=0;
+
+        }
+
+        showSlide(currentSlide);
+
+    },slideDuration);
+
+}
+
+
+/* Start slideshow shortly after opening */
+
+startButton.addEventListener("click",()=>{
+
+    setTimeout(startSlideshow,900);
+
+});
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+const envelope=
+    document.getElementById("envelope");
+
+envelope.addEventListener("click",()=>{
+
+    envelope.classList.toggle("open");
+
+    if(envelope.classList.contains("open")){
+
+        /* burst of flowers */
+
+        for(let i=0;i<12;i++){
+
+            setTimeout(createFlower,i*100);
+
+        }
+
+    }
+
+});
+
+
+/* =========================================================
+   EXTRA FLOWERS WHEN FINAL SECTION IS REACHED
+========================================================= */
+
+const finalSection=
+    document.querySelector(".final");
+
+const observer=
+    new IntersectionObserver((entries)=>{
+
+        entries.forEach(entry=>{
+
+            if(entry.isIntersecting){
+
+                for(let i=0;i<15;i++){
+
+                    setTimeout(createFlower,i*120);
+
+                }
+
+            }
+
+        });
+
+    },{
+        threshold:.35
+    });
+
+observer.observe(finalSection);
+
+
+/* =========================================================
+   PREVENT BROKEN IMAGE LOOK
+========================================================= */
+
+document.addEventListener("error",(event)=>{
+
+    if(event.target.tagName==="IMG"){
+
+        event.target.style.background=
+            "linear-gradient(135deg,#17182c,#282039)";
+
+    }
+
+},true);
+
+</script>
+
+</body>
+                  </html>
